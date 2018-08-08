@@ -2,7 +2,7 @@
   <div>
     <div class="messages">
       <message-container v-bind:messages="messages"></message-container>
-      <!-- TODO: Add message-container and supply messages property. -->
+    
     </div>
     <div class="word-search">
       <form v-on:submit.prevent="findWords">
@@ -18,7 +18,7 @@
     <div class="word-list-container">
       <h2>Word List</h2>
       <ul class="word-list">
-        <!-- TODO: Add transition-group around the list item here to animate items in the word list. -->
+        
           <transition-group name="slideRight" tag="div" appear>
           <li v-for="word in wordList" v-bind:key="word">{{ word }}&nbsp;<button v-on:click="removeWord(word)" class="remove-word">x</button></li>
           </transition-group>
@@ -28,7 +28,7 @@
       <spinner v-if="showSpinner"></spinner>
       <h2 v-if="results && results.length > 0">{{ results.length }} Words Found</h2>
       <ul v-if="results && results.length > 0" class="results">
-        <!-- TODO: Add transition-group around the list item here to animate items in the results list. -->
+        
           <transition-group name="fade" tag="div" appear>
           <li v-for="item in results" class="item" v-bind:key="item.word">
             <p class="result-word">{{ item.word }}</p>
@@ -36,7 +36,7 @@
           </li>
           </transition-group>
       </ul>
-      <!-- TODO: Add message to display here if no results are found. -->
+      
       <div v-if="results && results.length ===0" class="no=results">
       <h2>No Words Found</h2>
       <p>Try your search again with different parameters.</p>
@@ -48,17 +48,17 @@
 
 <script>
 import axios from 'axios';
-// Note: vue2-animate is added using the require statement because it is a CSS file
+
 require('vue2-animate/dist/vue2-animate.min.css');
 import CubeSpinner from '@/components/CubeSpinner';
 import MessageContainer from '@/components/MessageContainer';
-// TODO: Import MessageContainer for use as a child component
+
 
 
 export default {
   name: 'WordSearch',
   components: {
-    // TODO: Define child components here.
+
   spinner: CubeSpinner,
   'message-container': MessageContainer
   },
@@ -79,7 +79,7 @@ export default {
       if (this.wordList.indexOf(word) === -1) {
         this.wordList.push(word);
         console.log(`Added ${word} to wordList.`);
-        // TODO: Add message to this.messages to reflect this change.
+        
       let message = {
         type: 'success',
         text: '${word} successfully added to Word List.'
@@ -87,7 +87,7 @@ export default {
       this.messages.push(message);
       } else {
         console.log('Word is already on wordlist.');
-        // TODO: Add message to this.messages to reflect this change.
+       
         let message = {
         type: 'info',
         text: '${word} is already in the Word List.'
@@ -97,7 +97,7 @@ export default {
     },
     removeWord: function (word) {
       this.wordList.splice(this.wordList.indexOf(word), 1);
-      // TODO: Add message to this.messages to reflect this change.
+      
 
     },
     findWords: function() {
@@ -116,9 +116,7 @@ export default {
       })
       .catch( error => {
         this.showSpinner = false;
-        // TODO: Turn off spinner
-
-        // TODO: Add message to this.messages to display the errors.
+        
 
       })
     }
